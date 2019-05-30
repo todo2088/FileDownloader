@@ -28,53 +28,74 @@ import java.io.File;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.annotation.Transient;
+import io.objectbox.annotation.Unique;
+
 /**
  * The model of the downloading task will be used in the filedownloader database.
  *
  * @see FileDownloadDatabase
  */
 @SuppressWarnings("WeakerAccess")
+@Entity
 public class FileDownloadModel implements Parcelable {
-
+    @Transient
     public static final int TOTAL_VALUE_IN_CHUNKED_RESOURCE = -1;
     public static final int DEFAULT_CALLBACK_PROGRESS_TIMES = 100;
-
+    @Id
+    public long boxId;
+    @Unique
     // download id
     private int id;
+    @Transient
     public static final String ID = "_id";
 
     // download url
     private String url;
+    @Transient
     public static final String URL = "url";
 
     // save path
     private String path;
+    @Transient
     public static final String PATH = "path";
 
 
     private boolean pathAsDirectory;
+    @Transient
     public static final String PATH_AS_DIRECTORY = "pathAsDirectory";
 
     private String filename;
+    @Transient
     public static final String FILENAME = "filename";
-
+    private int _status;
+    @Transient
     private final AtomicInteger status;
+    @Transient
     public static final String STATUS = "status";
 
+    private long _soFar;
+    @Transient
     private final AtomicLong soFar;
     private long total;
-
+    @Transient
     public static final String SOFAR = "sofar";
+    @Transient
     public static final String TOTAL = "total";
 
     private String errMsg;
+    @Transient
     public static final String ERR_MSG = "errMsg";
 
     // header
     private String eTag;
+    @Transient
     public static final String ETAG = "etag";
 
     private int connectionCount;
+    @Transient
     public static final String CONNECTION_COUNT = "connectionCount";
 
     public void setId(int id) {
@@ -145,6 +166,22 @@ public class FileDownloadModel implements Parcelable {
             return null;
         }
         return FileDownloadUtils.getTempPath(getTargetFilePath());
+    }
+
+    public int get_status() {
+        return getStatus();
+    }
+
+    public void set_status(int _status) {
+        setStatus((byte) _status);
+    }
+
+    public long get_soFar() {
+        return getSoFar();
+    }
+
+    public void set_soFar(long _soFar) {
+        setSoFar(_soFar);
     }
 
     public byte getStatus() {

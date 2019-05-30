@@ -39,7 +39,7 @@ import java.util.concurrent.locks.LockSupport;
 public class RemitDatabase implements FileDownloadDatabase {
 
     private final NoDatabaseImpl cachedDatabase;
-    private final SqliteDatabaseImpl realDatabase;
+    private final ObjectBoxDBImpl realDatabase;
 
 
     private Handler handler;
@@ -53,7 +53,7 @@ public class RemitDatabase implements FileDownloadDatabase {
 
     public RemitDatabase() {
         this.cachedDatabase = new NoDatabaseImpl();
-        this.realDatabase = new SqliteDatabaseImpl();
+        this.realDatabase = new ObjectBoxDBImpl();
         this.minInterval = FileDownloadProperties.getImpl().downloadMinProgressTime;
 
         final HandlerThread thread = new HandlerThread(

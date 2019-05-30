@@ -13,7 +13,7 @@ android {
     buildToolsVersion BUILD_TOOLS_VERSION as String
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion COMPILE_SDK_VERSION as int
 
         File file = project.rootProject.file('local.properties');

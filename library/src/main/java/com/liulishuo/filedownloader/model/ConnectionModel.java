@@ -22,23 +22,32 @@ import com.liulishuo.filedownloader.util.FileDownloadUtils;
 
 import java.util.List;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.annotation.Index;
+import io.objectbox.annotation.Transient;
+
 /**
  * The connection model used for record each connections on multiple connections case.
  */
-
+@Entity
 public class ConnectionModel {
+    @Transient
     public static final String ID = "id";
+    @Id
+    public long boxId;
     private int id;
-
+    @Transient
     public static final String INDEX = "connectionIndex";
+    @Index
     private int index;
-
+    @Transient
     public static final String START_OFFSET = "startOffset";
     private long startOffset;
-
+    @Transient
     public static final String CURRENT_OFFSET = "currentOffset";
     private long currentOffset;
-
+    @Transient
     public static final String END_OFFSET = "endOffset";
     private long endOffset;
 

@@ -5,7 +5,7 @@ android {
     buildToolsVersion BUILD_TOOLS_VERSION as String
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 15
         versionName VERSION_NAME as String
     }
 }
@@ -38,5 +38,5 @@ dependencies {
     testImplementation "org.mockito:mockito-core:2.+"
     testImplementation "org.robolectric:robolectric:3.3.2"
 }
-
+apply plugin: 'io.objectbox' // apply last
 apply from: rootProject.file('gradle/mvn-push.gradle')
